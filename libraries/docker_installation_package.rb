@@ -1,11 +1,11 @@
 module DockerCookbook
   class DockerInstallationPackage < DockerBase
-    # Resource properties
+    # Resource:: properties
     resource_name :docker_installation_package
 
     provides :docker_installation, platform: 'amazon'
 
-    property :setup_docker_repo, [TrueClass, FalseClass], default: lazy { platform?('amazon') ? false : true }, desired_state: false
+    property :setup_docker_repo, [true, false], default: lazy { platform?('amazon') ? false : true }, desired_state: false
     property :repo_channel, String, default: 'stable'
     property :package_name, String, default: lazy { default_package_name }, desired_state: false
     property :package_version, String, default: lazy { version_string(version) }, desired_state: false
